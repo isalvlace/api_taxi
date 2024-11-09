@@ -3,7 +3,7 @@ const path = require('path')
 
 config()
 
-/* const {
+const {
   DB_HOST = 'mysql-container',
   DB_USER = 'root',
   DB_PASSWORD = 'rootpassword',
@@ -26,9 +26,9 @@ module.exports = {
     directory: path.join(__dirname, 'migrations'),
     tableName: 'knex_migrations',
   },
-} */
+}
 
-module.exports = {
+/* module.exports = {
   client: 'mysql2',
   connection: {
     host: '127.0.0.1',   
@@ -36,4 +36,4 @@ module.exports = {
     password: '',  
     database: 'taxidb'    
   }
-}
+} */
