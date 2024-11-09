@@ -1,0 +1,36 @@
+version: '3'
+services:
+  mysql:
+    image: mysql:latest
+    container_name: mysql-container
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}  # Usando a variável do .env para a senha do root
+      MYSQL_DATABASE: ${DB_NAME}           # Usando a variável do .env para o nome do banco
+    ports:
+      - "3306:3306"  # Mapeia a porta 3306 para o host
+    volumes:
+      - mysql-data:/var/lib/mysql  # Volume persistente para o banco de dados
+    networks:
+      - app-network
+
+  api:
+    build:
+      context: .  # Define o diretório de contexto para o build
+    container_name: api-container
+    env_file:
+      - .env  # Carrega as variáveis de ambiente do arquivo .env
+    ports:
+      - "3000:3000"  # Mapeia a porta 3000 para o host
+    depends_on:
+      - mysql  # Garante que o banco de dados será iniciado antes da API
+    networks:
+      - app-network
+    restart: always  # Garantir que a API reinicie se falhar
+    command: ["sh", "-c", "wait-for-it mysql-container:3306 -- knex migrate:latest --env production && npm start"]  # Comando com migração e start da API
+
+volumes:
+  mysql-data:  # Volume persistente para o MySQL
+  
+networks:
+  app-network:
+    driver: bridge
