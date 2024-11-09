@@ -1,4 +1,4 @@
-# API Node.js com MySQL e Docker
+## API Node.js com MySQL e Docker
 
 Esta é uma API desenvolvida utilizando **Node.js**, **MySQL** e **Docker**, projetada para gerenciar dados e interações relacionadas a passageiros (*passengers*), corridas (*rides*) e motoristas (*drivers*).
 
@@ -6,7 +6,7 @@ Esta é uma API desenvolvida utilizando **Node.js**, **MySQL** e **Docker**, pro
 
 ### 1. Clone o repositório
 bash<br>
-git clone https://github.com/islvlace/api_taxi<br>
+git clone git@github.com:isalvlace/api_taxi.git<br>
 cd api_taxi<br>
 
 ### Execute Com Docker
@@ -14,7 +14,7 @@ docker-compose up --build -d<br>
 
 ### Teste os endpoints
 Utilize algum cliente http (postman) para acionar as seguintes rotas:<br>
-(1) http://localhost:3000/passengers (POST)
+(1) http://localhost:3000/passengers (POST)<br>
     Coloque o json no corpo da requisição:
     {
         "name": "Joana",
@@ -40,14 +40,14 @@ Utilize algum cliente http (postman) para acionar as seguintes rotas:<br>
 <br>
 
 (4) http://localhost:3000/rides (PATCH)<br>
-    Caso STARTED
+    Caso STARTED<br>
     {
         "id": 1, // id da corrida que será atualizada
         "status": "started",
         "driver_id": 1, // id do motorista que está atualizando
         "price": 42.65
     }<br> 
-    Caso COMPLETED
+    Caso COMPLETED<br>
     {
         "id": 1,
         "status": "completed",
